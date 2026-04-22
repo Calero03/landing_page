@@ -1,0 +1,80 @@
+/* Configuración de Scroll y Colores */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --orange-cargotrans: #f26522;
+}
+
+.text-orange-custom {
+  color: var(--orange-cargotrans);
+}
+
+.bg-orange-custom {
+  background-color: var(--orange-cargotrans);
+}
+
+.border-orange-custom {
+  border-color: var(--orange-cargotrans);
+}
+
+/* Hero Background */
+.hero-overlay {
+  background-image: url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop");
+}
+
+/* Tarjetas de Estadísticas */
+.stat-card {
+  background-color: #111111;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border-bottom: 4px solid var(--orange-cargotrans);
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Iconos de Check */
+.check-icon {
+  background-color: #22c55e;
+  color: white;
+  border-radius: 9999px;
+  padding: 0.25rem;
+  margin-right: 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* Estilos de Formulario */
+.form-input {
+  width: 100%;
+  background: transparent;
+  border-bottom: 2px solid #374151;
+  padding: 0.75rem 0;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: var(--orange-cargotrans);
+}
+
+/* Animación WhatsApp */
+.whatsapp-btn {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Header al hacer scroll */
+header.scrolled {
+  background-color: rgba(10, 26, 47, 0.98);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  height: 70px;
+}
