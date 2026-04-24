@@ -1,4 +1,4 @@
-// 1. Manejo del Header al hacer Scroll
+// 1. Manejo del Header al hacer Scroll (Efecto visual)
 window.addEventListener("scroll", function () {
   const header = document.getElementById("main-header");
   if (window.scrollY > 50) {
@@ -8,40 +8,61 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// 2. Manejo del Formulario (Captura de Leads)
+// 2. CONTROLADOR DEL FORMULARIO (Lógica Omnicanal: WhatsApp + Email)
 document.getElementById("leadForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Obtenemos los datos incluyendo el nuevo campo de departamento
   const formData = new FormData(this);
   const data = {
     nombre: formData.get("nombre"),
     email: formData.get("email"),
-    departamento: formData.get("departamento"), // Captura el departamento seleccionado
+    departamento: formData.get("departamento"),
     servicio: formData.get("servicio"),
+    canal: formData.get("canal_contacto"), // Captura la elección: whatsapp o email
   };
 
-  console.log("Datos capturados para el análisis de Marketing:", data);
+  // --- ANALYTICS (Se conecta con el ID G-EYPC8MSNZ7 del HTML) ---
+  if (typeof gtag === "function") {
+    gtag("event", "generate_lead", {
+      method: data.canal,
+      location: data.departamento,
+      service: data.servicio,
+    });
+  }
 
-  // Feedback visual al usuario
+  // --- LÓGICA DE ENRUTAMIENTO (OMNICANALIDAD) ---
+  const mensajeBase = `Hola Cargotrans, soy *${data.nombre}*. Deseo cotizar el servicio de *${data.servicio}* para el departamento de *${data.departamento}*. Mi correo es: ${data.email}`;
+
+  if (data.canal === "whatsapp") {
+    // RUTA A: WhatsApp API
+    const urlWA = `https://wa.me/50578113134?text=${encodeURIComponent(mensajeBase)}`;
+    window.open(urlWA, "_blank");
+  } else {
+    // RUTA B: Protocolo SMTP (Correo)
+    const asunto = encodeURIComponent(
+      `Solicitud de Cotización: ${data.nombre}`,
+    );
+    const cuerpo = encodeURIComponent(mensajeBase.replace(/\*/g, "")); // Limpia formato de WhatsApp para el correo
+    window.location.href = `mailto:ventas@cargotrans.com.ni?subject=${asunto}&body=${cuerpo}`;
+  }
+
+  // Feedback visual y Reset de la Vista
   const btn = this.querySelector("button");
   const originalText = btn.innerText;
-
-  btn.innerText = "ENVIANDO...";
+  btn.innerText = "¡SOLICITUD ENVIADA!";
   btn.disabled = true;
 
-  // Simulación de respuesta del servidor usando el departamento en el mensaje
   setTimeout(() => {
     alert(
-      `¡Gracias ${data.nombre}! Hemos registrado tu solicitud para el departamento de ${data.departamento}. Un asesor de Cargotrans te contactará pronto.`,
+      `¡Gracias ${data.nombre}! Tu solicitud ha sido procesada vía ${data.canal.toUpperCase()}. Un asesor te contactará para la tasación final.`,
     );
     btn.innerText = originalText;
     btn.disabled = false;
     this.reset();
-  }, 1500);
+  }, 1000);
 });
 
-// 3. Efecto de aparición suave para las tarjetas (Opcional - UX)
+// 3. Efectos UX (Aparición suave de tarjetas)
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
