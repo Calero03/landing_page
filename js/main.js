@@ -43,7 +43,7 @@ document.getElementById("leadForm").addEventListener("submit", function (e) {
       `Solicitud de Cotización: ${data.nombre}`,
     );
     const cuerpo = encodeURIComponent(mensajeBase.replace(/\*/g, "")); // Limpia formato de WhatsApp para el correo
-    window.location.href = `mailto:ventas@cargotrans.com.ni?subject=${asunto}&body=${cuerpo}`;
+    window.location.href = `mailto:lcalerogarcia94@gmail.com.ni?subject=${asunto}&body=${cuerpo}`;
   }
 
   // Feedback visual y Reset de la Vista
