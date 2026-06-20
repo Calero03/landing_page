@@ -49,6 +49,13 @@
           <a href="#contacto" class="hover:text-orange-custom transition"
             >Contacto</a
           >
+
+          <a
+            href="https://app.powerbi.com/reportEmbed?reportId=ad9a5510-31af-4264-9176-139d3e885830&autoAuth=true&ctid=e47646fe-da27-4518-8436-5f8b158ba127"
+            target="_blank"
+            class="text-orange-400 hover:text-orange-300 transition"
+            >Dashboard BI</a
+          >
         </nav>
         <a
           href="#contacto"
@@ -76,12 +83,29 @@
         >
           Conectando personas, negocios y destinos en toda Nicaragua.
         </p>
-        <a
-          href="#servicios"
-          class="bg-orange-custom hover:bg-orange-600 text-white px-10 py-4 rounded-full font-black text-lg transition-all shadow-lg"
+        <div
+          class="flex flex-col sm:flex-row justify-center items-center gap-4"
         >
-          CONOCER MÁS
-        </a>
+          <a
+            href="#servicios"
+            class="w-full sm:w-auto bg-orange-custom hover:bg-orange-600 text-white px-10 py-4 rounded-full font-black text-lg transition-all shadow-lg text-center"
+          >
+            CONOCER MÁS
+          </a>
+
+          <a
+            href="https://app.powerbi.com/reportEmbed?reportId=ad9a5510-31af-4264-9176-139d3e885830&autoAuth=true&ctid=e47646fe-da27-4518-8436-5f8b158ba127"
+            target="_blank"
+            class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-black text-lg transition-all shadow-lg text-center flex items-center justify-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
+              />
+            </svg>
+            VER DASHBOARD BI
+          </a>
+        </div>
       </div>
 
       <div
@@ -367,10 +391,7 @@
     <script src="js/main.js"></script>
     <div id="footer-container"></div>
 
-    <script src="js/main.js"></script>
-
     <script>
-      // Esta función busca el archivo y lo mete en el div de arriba
       fetch("componestes/footer.html")
         .then((response) => {
           if (!response.ok) throw new Error("Error al cargar footer");
